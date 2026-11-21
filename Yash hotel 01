@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Bird Valley</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#10100f;color:#f3eee3;
+ font-family:Georgia,serif;
+}
+header{
+ padding:22px 12px;text-align:center;
+ background:#171714;border-bottom:1px solid #b99a60;
+}
+header h1{color:#c6a66a;margin:0;letter-spacing:2px}
+header p{color:#aaa;font-size:11px;letter-spacing:3px}
+.hero{
+ text-align:center;padding:75px 15px;
+ background:linear-gradient(#171714,#10100f);
+}
+.hero h2{font-size:42px;color:#c6a66a;font-weight:normal}
+.hero p{color:#ccc}
+button,.btn{
+ background:#c6a66a;color:#171510;
+ border:0;padding:12px 20px;cursor:pointer;
+ text-decoration:none;display:inline-block;
+ margin:5px;
+}
+section{padding:45px 6%}
+.heading{text-align:center;color:#c6a66a;font-size:30px}
+.tabs{text-align:center;margin:20px 0}
+.tabs button{
+ background:transparent;color:#c6a66a;
+ border:1px solid #c6a66a;
+}
+.tabs button.active{background:#c6a66a;color:#111}
+.menu{
+ display:grid;grid-template-columns:repeat(2,1fr);
+ gap:12px;max-width:850px;margin:auto;
+}
+.item{
+ background:#1b1b18;padding:17px;
+ border:1px solid #393327;
+ display:flex;justify-content:space-between;gap:10px;
+}
+.item h3{font-size:17px;font-weight:normal;margin:0 0 7px}
+.item p{font-size:12px;color:#aaa;margin:0}
+.price{color:#c6a66a;white-space:nowrap}
+.info{
+ background:#191916;text-align:center;
+ border-top:1px solid #393327;
+}
+.info p{color:#bbb;line-height:1.8}
+footer{
+ text-align:center;padding:22px;
+ color:#c6a66a;border-top:1px solid #393327;
+}
+@media(max-width:600px){
+ .menu{grid-template-columns:1fr}
+ .hero h2{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>HOTEL BIRD VALLEY</h1>
+<p>DINING & HOSPITALITY</p>
+</header>
+
+<div class="hero">
+<h2>Welcome to Bird Valley</h2>
+<p>Good Food. Great Hospitality.</p>
+<a href="#menu" class="btn">EXPLORE MENU</a>
+</div>
+
+<section id="menu">
+<h2 class="heading">OUR MENU</h2>
+
+<div class="tabs">
+<button class="active" onclick="show('starters',this)">Starters</button>
+<button onclick="show('main',this)">Main Course</button>
+<button onclick="show('rice',this)">Rice & Breads</button>
+<button onclick="show('drinks',this)">Drinks</button>
+</div>
+
+<div class="menu" id="menuItems"></div>
+</section>
+
+<section class="info">
+<h2 class="heading">ABOUT US</h2>
+<p>Welcome to Hotel Bird Valley.<br>
+Enjoy delicious food and warm hospitality.</p>
+<h3 style="color:#c6a66a">CONTACT US</h3>
+<p>Phone: Add your number<br>
+Address: Add hotel address</p>
+
+<a class="btn" href="https://wa.me/">WHATSAPP</a>
+<a class="btn" href="#menu">VIEW MENU</a>
+<a class="btn" id="review" href="#">GOOGLE REVIEWS</a>
+</section>
+
+<footer>
+HOTEL BIRD VALLEY<br><br>
+Thank You For Visiting
+</footer>
+
+<script>
+// EDIT YOUR MENU ITEMS AND PRICES HERE
+const foods={
+starters:[
+["Veg Crispy","₹ —"],
+["Paneer Tikka","₹ —"],
+["Chicken Starter","₹ —"],
+["Soup of the Day","₹ —"]
+],
+main:[
+["Paneer Butter Masala","₹ —"],
+["Veg Kolhapuri","₹ —"],
+["Dal Tadka","₹ —"],
+["Chicken Curry","₹ —"]
+],
+rice:[
+["Jeera Rice","₹ —"],
+["Steam Rice","₹ —"],
+["Butter Naan","₹ —"],
+["Tandoori Roti","₹ —"]
+],
+drinks:[
+["Tea","₹ —"],
+["Coffee","₹ —"],
+["Fresh Lime Soda","₹ —"],
+["Cold Drink","₹ —"]
+]
+};
+
+function show(category,button){
+ document.querySelectorAll(".tabs button")
+ .forEach(b=>b.classList.remove("active"));
+ if(button)button.classList.add("active");
+
+ const container=document.getElementById("menuItems");
+ container.innerHTML="";
+
+ foods[category].forEach(food=>{
+  const item=document.createElement("div");
+  item.className="item";
+  const name=document.createElement("h3");
+  name.textContent=food[0];
+  const price=document.createElement("span");
+  price.className="price";
+  price.textContent=food[1];
+  item.append(name,price);
+  container.appendChild(item);
+ });
+}
+
+show("starters",document.querySelector(".tabs button"));
+
+// ADD YOUR ACTUAL GOOGLE REVIEW LINK
+document.getElementById("review").href =
+"https://genuine-sable-acff75.netlify.app/v";
+</script>
+</body>
+</html>
